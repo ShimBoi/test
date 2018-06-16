@@ -10,24 +10,25 @@ public class CharacterControl : MonoBehaviour {
 	public Slider healthBar;
 	public Text healthText;
 	public Text DieScreen;
-	string maxHelath;
+	int maxHelath;
 	bool onGround = false;
 
 	public int Health {
 		get{return health;}
 		set{
 			health = value;
-			if(health>maxHelath){
+			if (health > maxHelath) {
 				health = maxHelath;
-				return
+				return;
 			}
-			healthBar.value = health;
-			Debug.Log (health);
-			healthText.text = health + "/"+maxHelath;
-			if (health <= 0) {
-				DieScreen.text = "You Died";
-				healthText.text = "0/" + maxHelath;
-			}
+				healthBar.value = health;
+				Debug.Log (health);
+				healthText.text = health + "/" + maxHelath;
+				if (health <= 0) {
+					DieScreen.text = "You Died";
+					healthText.text = "0/" + maxHelath;
+				}
+			
 		}
 
 	}
@@ -38,7 +39,7 @@ public class CharacterControl : MonoBehaviour {
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
-		maxHelath = ""+health;
+		maxHelath = health;
 		healthBar.maxValue = health;
 		healthText.text= health +"/"+maxHelath ;
 	
